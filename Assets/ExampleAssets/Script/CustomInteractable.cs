@@ -9,6 +9,14 @@ public class CustomInteractable : MonoBehaviour
 
     [HideInInspector]
     public CustomHand m_ActiveHand = null;
+    public Vector3 startingPoint;
+    public Quaternion startingRotation;
+
+    public void Awake()
+    {
+        startingPoint = transform.position;
+        startingRotation = transform.rotation;
+    }
 
     public void Action(GameObject RSVP)
     {

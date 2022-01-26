@@ -31,7 +31,7 @@ public class CustomHand : MonoBehaviour
         //Down
         if (m_GrabAction.GetStateDown(m_Pose.inputSource))
         {
-            print(m_Pose.inputSource + "Grip Down");
+            //print(m_Pose.inputSource + "Grip Down");
             Pickup();
         }
 
@@ -47,7 +47,7 @@ public class CustomHand : MonoBehaviour
         //Up
         if (m_GrabAction.GetStateUp(m_Pose.inputSource))
         {
-            print(m_Pose.inputSource + "Grip Up");
+            //print(m_Pose.inputSource + "Grip Up");
             Drop();
         }
     }
@@ -129,6 +129,13 @@ public class CustomHand : MonoBehaviour
         targetBody.velocity = m_Pose.GetVelocity();
         targetBody.angularVelocity = m_Pose.GetAngularVelocity();
         */
+
+        //Flick function to send the paper back to its original
+        if(m_Pose.GetAngularVelocity().magnitude > 7)
+        {
+            //print("Flick");
+            m_CurrentInteractable.transform.SetPositionAndRotation(m_CurrentInteractable.startingPoint, m_CurrentInteractable.startingRotation);
+        }
 
         //Set hands and pointer to visible
         m_Controller.SetMeshRendererState(true);
