@@ -6,9 +6,10 @@ public class Pointer : MonoBehaviour
 {
     public float m_DefaultLength = 5.0f;
     public GameObject m_Dot;
-    //public VRInputModule m_inputModule;
+    public CustomInteractable m_HitInteractable = null;
 
     private LineRenderer m_LineRenderer = null;
+    
 
     private void Awake()
     {
@@ -35,13 +36,19 @@ public class Pointer : MonoBehaviour
         //Default
         Vector3 endPosition = transform.position + (transform.forward * targetLength);
 
-        //Or based on hit
-        if(hit.collider != null)
+        //Set to visible if it hits something and the paper
+        if(hit.collider != null && hit.collider.CompareTag("Interactable"))
         {
             endPosition = hit.point;
-
-            //Set to visible if it hits
             m_Dot.GetComponent<MeshRenderer>().enabled = true;
+            if (!m_HitInteractable)
+            {
+                m_HitInteractable = hit.transform.gameObject.GetComponent<CustomInteractable>();
+            }
+        }
+        else
+        {
+            m_HitInteractable = null;
         }
 
         //Set Position of the dot

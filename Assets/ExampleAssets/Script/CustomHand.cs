@@ -8,22 +8,29 @@ public class CustomHand : MonoBehaviour
     public SteamVR_Action_Boolean m_GrabAction = null;
     public SteamVR_Action_Boolean m_ButtonAction = null;
     public RSVP m_RSVP = null;
+    public Pointer m_Pointer = null;
 
     private SteamVR_Behaviour_Pose m_Pose = null;
     private FixedJoint m_Joint = null;
     private SteamVR_RenderModel m_Controller = null;
-    private GameObject m_Pointer = null;
+    private GameObject m_PointerObject = null;
+    private bool isRightHand = true;
 
     private CustomInteractable m_CurrentInteractable = null;
     //Public for debugging purposes in unity.
-    public List<CustomInteractable> m_ContactInteractables = new List<CustomInteractable>();
+    public HashSet<CustomInteractable> m_ContactInteractables = new HashSet<CustomInteractable>();
 
     private void Awake()
     {
         m_Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
         m_Controller = GetComponentInChildren<SteamVR_RenderModel>();
-        m_Pointer = GameObject.Find("PR_Pointer");
+        m_PointerObject = GameObject.Find("PR_Pointer");
+        //Check if this is the right hand (The pointer)
+        if (gameObject.name.Equals("Controller (left)"))
+        {
+            isRightHand = false;
+        }
     }
 
     private void Update()
@@ -76,36 +83,34 @@ public class CustomHand : MonoBehaviour
     {
         //Get Nearest
         m_CurrentInteractable = GetNearestInteractable();
-        
+
+        bool distanceGrab = false;
         //Null Check
         if (!m_CurrentInteractable)
         {
-            return;
+            if (!m_Pointer.m_HitInteractable || !isRightHand)
+            {
+                return;
+            }
+            distanceGrab = true;
+            m_CurrentInteractable = m_Pointer.m_HitInteractable;
         }
 
-        //Already Held, check
+        //Check if it is already held
         if (m_CurrentInteractable.m_ActiveHand)
         {
             m_CurrentInteractable.m_ActiveHand.Drop();
-        }
-
-        //Position (if you need to move the object to the center)
-        /*
-        m_CurrentInteractable.transform.position = transform.position;
-        */
+        } 
         
-        //If the paper is too far, teleports it to your hand
-        float distance = (m_CurrentInteractable.transform.position - transform.position).sqrMagnitude;
-        //The distance needs to be tweaked.
-        if (distance > 0.2f)
+
+        if (distanceGrab)
         {
             m_CurrentInteractable.transform.position = transform.position;
-        }
-        
+        } 
 
         //Set hands invisible
         m_Controller.SetMeshRendererState(false);
-        m_Pointer.SetActive(false);
+        m_PointerObject.SetActive(false);
 
         //Attach
         Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
@@ -131,7 +136,9 @@ public class CustomHand : MonoBehaviour
         */
 
         //Flick function to send the paper back to its original
-        if(m_Pose.GetAngularVelocity().magnitude > 7)
+        //Look at the Angular Momentum formula, it returns the square value instead of root value
+        int flickThreshold = 50;
+        if(m_Pose.GetAngularVelocity().sqrMagnitude > flickThreshold)
         {
             //print("Flick");
             m_CurrentInteractable.transform.SetPositionAndRotation(m_CurrentInteractable.startingPoint, m_CurrentInteractable.startingRotation);
@@ -139,7 +146,7 @@ public class CustomHand : MonoBehaviour
 
         //Set hands and pointer to visible
         m_Controller.SetMeshRendererState(true);
-        m_Pointer.SetActive(true);
+        m_PointerObject.SetActive(true);
 
         //Detach
         m_Joint.connectedBody = null;
@@ -148,8 +155,6 @@ public class CustomHand : MonoBehaviour
         m_CurrentInteractable.m_ActiveHand = null;
         m_CurrentInteractable = null;
 
-        //This is just a patch. NEED TO FIND A BETTER SOLUTION.
-        m_ContactInteractables.Clear();
     }
 
     private CustomInteractable GetNearestInteractable()

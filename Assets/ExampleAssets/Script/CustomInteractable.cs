@@ -26,8 +26,7 @@ public class CustomInteractable : MonoBehaviour
 
     public string GetText()
     {
-        string content = GetComponentInChildren<TMP_Text>().text;
-        return content;
+        return GetComponentInChildren<TMP_Text>().text;
     }
 
 }

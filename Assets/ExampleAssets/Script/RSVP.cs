@@ -6,7 +6,7 @@ using TMPro;
 public class RSVP : MonoBehaviour
 {
     private string content;
-    private bool isVisible = true;
+    private bool isVisible = false;
     private string[] word;
     private int iteration;
     private int maxIteration;
@@ -16,14 +16,12 @@ public class RSVP : MonoBehaviour
 
     
 
-
     // Start is called before the first frame update
     void Start()
     {
         m_Canvas = GetComponent<Canvas>();
         m_textMeshPro = GetComponentInChildren<TMP_Text>();
 
-        isVisible = !isVisible;
         m_Canvas.enabled = isVisible;
 
         InvokeRepeating("RapidText", 0.03f, 0.3f);
@@ -35,9 +33,11 @@ public class RSVP : MonoBehaviour
         
     }
 
+    //Split the text from each word. Each word is then added to the list.
     public void SplitText(string text)
     {
-        if (content == text)
+        //If the content is the same, dont do anything.
+        if (text.Equals(content))
         {
             return;
         }
@@ -63,7 +63,6 @@ public class RSVP : MonoBehaviour
             return;
         }
         iteration += 1;
-        content = word[iteration];
-        m_textMeshPro.text = content;
+        m_textMeshPro.text = word[iteration];
     }
 }
