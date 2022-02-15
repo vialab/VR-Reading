@@ -16,7 +16,7 @@ public class CustomHand : MonoBehaviour
     private GameObject m_PointerObject = null;
     private bool isRightHand = true;
 
-    private CustomInteractable m_CurrentInteractable = null;
+    public CustomInteractable m_CurrentInteractable = null;
     //Public for debugging purposes in unity.
     public HashSet<CustomInteractable> m_ContactInteractables = new HashSet<CustomInteractable>();
 
@@ -35,23 +35,39 @@ public class CustomHand : MonoBehaviour
 
     private void Update()
     {
-        //Down
+        //Grip Down
         if (m_GrabAction.GetStateDown(m_Pose.inputSource))
         {
             //print(m_Pose.inputSource + "Grip Down");
             Pickup();
         }
 
-        //If item is being held and trigger is down
-        if (m_CurrentInteractable != null && m_ButtonAction.GetStateDown(m_Pose.inputSource))
+        //Enable RSVP by pointing at it and press the trigger button
+        if (isRightHand 
+            && m_ButtonAction.GetStateDown(m_Pose.inputSource) 
+            && m_Pointer.m_HitInteractable
+            && !m_CurrentInteractable)
         {
-            //Contact the RSVP class
-            m_RSVP.ToggleVisibility();
-            m_RSVP.SplitText(m_CurrentInteractable.GetText());
+            m_RSVP.EnableRSVP(m_Pointer.m_HitInteractable.GetText());
+        }
+
+        //If item is being held and trigger is down
+        if (m_CurrentInteractable 
+            && m_ButtonAction.GetStateDown(m_Pose.inputSource))
+        {
+            m_RSVP.EnableRSVP(m_CurrentInteractable.GetText());
 
         }
 
-        //Up
+        //If controller isnt pointing or grabbing anything, just turn it off.
+        if (!m_CurrentInteractable 
+            && !m_Pointer.m_HitInteractable 
+            && m_ButtonAction.GetStateDown(m_Pose.inputSource))
+        {
+            m_RSVP.VisibilityOff();
+        }
+
+        //Grip Up
         if (m_GrabAction.GetStateUp(m_Pose.inputSource))
         {
             //print(m_Pose.inputSource + "Grip Up");
@@ -85,9 +101,10 @@ public class CustomHand : MonoBehaviour
         m_CurrentInteractable = GetNearestInteractable();
 
         bool distanceGrab = false;
-        //Null Check
+        //Check if there is a paper near your hand
         if (!m_CurrentInteractable)
         {
+            //Check if the pointer is empty or the grab is left hand
             if (!m_Pointer.m_HitInteractable || !isRightHand)
             {
                 return;
@@ -102,7 +119,7 @@ public class CustomHand : MonoBehaviour
             m_CurrentInteractable.m_ActiveHand.Drop();
         } 
         
-
+        //If there isnt paper near hand but there is at the distance, grab that
         if (distanceGrab)
         {
             m_CurrentInteractable.transform.position = transform.position;
@@ -110,7 +127,12 @@ public class CustomHand : MonoBehaviour
 
         //Set hands invisible
         m_Controller.SetMeshRendererState(false);
-        m_PointerObject.SetActive(false);
+
+        //If it is right hand, then turn the pointer invisible
+        if (isRightHand)
+        {
+            m_PointerObject.SetActive(false);
+        }
 
         //Attach
         Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
