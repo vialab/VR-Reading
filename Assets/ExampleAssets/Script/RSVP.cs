@@ -58,11 +58,21 @@ public class RSVP : MonoBehaviour
         }
     }
 
+    public bool isContentEmpty()
+    {
+        return string.IsNullOrEmpty(content);
+    }
+
     public void ToggleVisibility()
     {
         pause = !pause;
         isVisible = !isVisible;
         m_Canvas.enabled = isVisible;
+
+        if (!pause)
+        {
+            pauseGap = true;
+        }
     }
 
     public void VisibilityOff()
@@ -108,11 +118,15 @@ public class RSVP : MonoBehaviour
                 pauseGap = false;
                 yield return new WaitForSecondsRealtime(1.0f);
             }
+            else
+            {
+                iteration += 1;
+                m_textMeshPro.text = word[iteration];
+                yield return new WaitForSecondsRealtime(speed);
+            }
 
             
-            iteration += 1;
-            m_textMeshPro.text = word[iteration];
-            yield return new WaitForSecondsRealtime(speed);
+            
 
 
         }

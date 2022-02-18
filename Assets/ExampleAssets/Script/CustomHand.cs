@@ -59,12 +59,13 @@ public class CustomHand : MonoBehaviour
 
         }
 
-        //If controller isnt pointing or grabbing anything, just turn it off.
+        //If controller isnt pointing or grabbing anything, toggle between visibility.
         if (!m_CurrentInteractable 
+            && !m_RSVP.isContentEmpty()
             && !m_Pointer.m_HitInteractable 
             && m_ButtonAction.GetStateDown(m_Pose.inputSource))
         {
-            m_RSVP.VisibilityOff();
+            m_RSVP.ToggleVisibility();
         }
 
         //Grip Up
