@@ -18,7 +18,7 @@ public class CustomHand : MonoBehaviour
 
     public CustomInteractable m_CurrentInteractable = null;
     //Public for debugging purposes in unity.
-    public HashSet<CustomInteractable> m_ContactInteractables = new HashSet<CustomInteractable>();
+    public List<CustomInteractable> m_ContactInteractables = new List<CustomInteractable>();
 
     private void Awake()
     {
