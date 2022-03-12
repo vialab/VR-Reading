@@ -7,14 +7,14 @@ public class Headset : MonoBehaviour
 {
 
     public RSVP rsvp = null;
+    public int m_Threshold = 100;
 
-    Vector3 prevAngle;
-    Vector3 currentAngle;
+    private Vector3 prevAngle;
+    private Vector3 currentAngle;
 
-    float velocity;
-
-    float[] history = new float[3];
-    int currentHistoryIndex = 0;
+    private float velocity;
+    private float[] history = new float[3];
+    private int currentHistoryIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class Headset : MonoBehaviour
         AppendMomentum(Vector3.Angle(prevAngle, currentAngle) / Time.deltaTime);
         velocity = AverageVelocity();
 
-        if (velocity > 275)
+        if (velocity > m_Threshold)
         {
             rsvp.VisibilityOff();
         }
@@ -45,7 +45,7 @@ public class Headset : MonoBehaviour
         
     }
 
-    void AppendMomentum(float velocity)
+    private void AppendMomentum(float velocity)
     {
         if (currentHistoryIndex >= history.Length)
         {
@@ -57,7 +57,7 @@ public class Headset : MonoBehaviour
 
     }
 
-    float AverageVelocity()
+    private float AverageVelocity()
     {
         float sum = 0;
 
