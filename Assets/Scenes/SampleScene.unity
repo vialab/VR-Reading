@@ -362,13 +362,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello Ladies and Gentlemen! welcome to episode one of Jermacraft! the series
-    where I play minecraft, this is going to be a single player let's play, and when
-    I say "let's play" I use that term pretty loosely because I am an idiot in this
-    game. You're gonna see lots of fails, your gonna see lots of triumphs, at least
-    I'm hoping, so go grab yourself a nice hot cup of coffee, hot cup of coco. I
-    got apple cider right here freshly brewed. Let me take a sip, ah that's some
-    good cider!
+  m_text: "Ars\xE8ne Lupin in our midst! the irresponsible burglar whose exploits
+    had been narrated in all the newspapers during the past few months! the mysterious
+    individual with whom Ganimard, our shrewdest detective, had been engaged in an
+    implacable conflict amidst interesting and picturesque surroundings. Ars\xE8ne
+    Lupin, the eccentric gentleman who operates only in the ch\xE2teaux and salons,
+    and who, one night, entered the residence of Baron Schormann, but emerged empty-handed,
+    leaving, however, his card on which he had scribbled these words: \u201CArs\xE8ne
+    Lupin, gentleman-burglar, will return when the furniture is genuine.\u201D Ars\xE8ne
+    Lupin, the man of a thousand disguises: in turn a chauffer, detective, bookmaker,
+    Russian physician, Spanish bull-fighter, commercial traveler, robust youth, or
+    decrepit old man."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -395,7 +399,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.15
+  m_fontSize: 8.2
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -488,7 +492,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1149456619}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &511741856
+--- !u!43 &591920719
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -808,11 +812,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The fact that you have reached this paper could mean a lot to the development
-    of this software. Either you have walked through the boundary of the play space
-    or the point grabber function that I have coded somehow work. Eitherway, you
-    have achived the unachievable. This text is just for placeholder purposes. In
-    fact, I am rambling right now just to fill the empty canvas that is this paper.
+  m_text: "Alice took up the fan and gloves, and, as the hall was very hot, she kept
+    fanning herself all the time she went on talking: \u201CDear, dear! How queer
+    everything is to-day! And yesterday things went on just as usual. I wonder if
+    I\u2019ve been changed in the night? Let me think: was I the same when I got
+    up this morning? I almost think I can remember feeling a little different. But
+    if I\u2019m not the same, the next question is, Who in the world am I? Ah, that\u2019s
+    the great puzzle!\u201D And she began thinking over all the children she knew
+    that were of the same age as herself, to see if she could have been changed for
+    any of them."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -839,7 +847,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.85
+  m_fontSize: 9.7
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2280,11 +2288,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1276792143}
+      objectReference: {fileID: 1971632880}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 511741856}
+      objectReference: {fileID: 591920719}
     - target: {fileID: 114000010110554832, guid: 4d293c8e162f3874b982baadd71153d2,
         type: 3}
       propertyPath: onDeviceIndexChanged.m_PersistentCalls.m_Calls.Array.size
@@ -2379,42 +2387,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194802125}
   m_CullTransparentMesh: 1
---- !u!21 &1276792143
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1364089254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,11 +2665,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor
-    congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada
-    libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce
-    est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas.
+  m_text: "But the letter of Ars\xE8ne Lupin that was published in the \u2018Echo
+    de France\u2019 (no once ever knew how the newspaper obtained it), that letter
+    in which Baron Cahorn was impudently warned of the coming theft, caused considerable
+    excitement. The most fabulous theories were advanced. Some recalled the existence
+    of the famous subterranean tunnels, and that was the line of research pursued
+    by the officers of the law, who searched the house from top to bottom, questioned
+    every stone, studied the wainscoting and the chimneys, the window-frames and
+    the girders in the ceilings. By the light of torches, they examined the immense
+    cellars where the lords of Malaquis were wont to store their munitions and provisions.
+    They sounded the rocky foundation to its very centre. But it was all in vain.
+    They discovered no trace of a subterranean tunnel. No secret passage existed."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2724,7 +2702,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.35
+  m_fontSize: 8.1
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3487,6 +3465,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
+--- !u!21 &1971632880
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1992542803
 GameObject:
   m_ObjectHideFlags: 0
